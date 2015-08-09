@@ -1,0 +1,14 @@
+name: EpicSMP
+main: com.gmail.justbru00.epic.smp.Main.Main
+version: 1.0
+description: A SMP server plugin
+author: Justin Brubaker
+depend: [Vault]
+
+commands:
+ epicsmp:
+       description: Version and License command.     
+ buycommand:
+       description: Brings up to command purchase GUI.
+ withdraw:
+       description: Allows you to withdraw a money note.
