@@ -1,0 +1,23 @@
+#EpicSMP: a bukkit/spigot plugin.
+#I will explain what the different options are below in comments.
+
+#DO NOT CHANGE THIS OPTION THE PLUGIN WILL BREAK.
+config version: 1
+
+#Messages used throughout the plugin.
+plugin messages:
+    #Prefix used before ALL messages.
+    prefix: '&8[&bEpic&fSMP&8] &f'
+    #No permission message.
+    no permission: '&cSorry you don''t have permission.'
+
+#Commands Section.   
+commands:
+    #Command /epicsmp
+    epicsmp:
+        #Help message.
+        help: '&fPlease contact your server admin for help.'
+        #License
+        license: 'Find license info at: http://tinyurl.com/nqme93d'
+        #If the player doesn't provide help or version after /epicsmp
+        not enough args: ''

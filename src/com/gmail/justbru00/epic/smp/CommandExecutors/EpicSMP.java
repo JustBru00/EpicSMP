@@ -1,5 +1,15 @@
 package com.gmail.justbru00.epic.smp.CommandExecutors;
 
-public class EpicSMP {
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+public class EpicSMP implements CommandExecutor {
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+		return false;
+	}
 
 }
