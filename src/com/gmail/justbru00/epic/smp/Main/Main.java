@@ -15,7 +15,7 @@ import com.gmail.justbru00.epic.smp.Listeners.Listener;
 
 public class Main extends JavaPlugin{
 	
-	public static String Prefix = "&8[&bEpic&fSMP&8]";
+	public static String Prefix = color("&8[&bEpic&fSMP&8]");	
 	public static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 	public final String PLUGIN_VERSION = this.getDescription().getVersion();
 	public final List<String> PLUGIN_AUTHORS = this.getDescription().getAuthors();
@@ -61,7 +61,7 @@ public class Main extends JavaPlugin{
 	 * Disables Plugin
 	 */
 	public void disablePlugin(){
-		
+		msgConsole("Plugin has been disabled.");
 	}
 
 	public String getConfigString(String path){

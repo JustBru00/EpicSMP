@@ -15,9 +15,16 @@ plugin messages:
 commands:
     #Command /epicsmp
     epicsmp:
+        #Permission for the command.
+        permission: 'epicsmp.epicsmp'
         #Help message.
         help: '&fPlease contact your server admin for help.'
-        #License
+        #License message.
         license: 'Find license info at: http://tinyurl.com/nqme93d'
-        #If the player doesn't provide help or version after /epicsmp
-        not enough args: ''
+        #If the player doesn't provide help or version after /epicsmp        
+        not enough args: '&cPlease put help or license after /epicsmp.'
+        
+    #Command /buycommand    
+    buycommand:
+        #Permission for the command.
+        permsission: ''
