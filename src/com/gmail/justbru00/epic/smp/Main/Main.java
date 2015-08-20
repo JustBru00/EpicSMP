@@ -21,12 +21,15 @@ package com.gmail.justbru00.epic.smp.Main;
 
 import java.util.List;
 
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import com.gmail.justbru00.epic.smp.CommandExecutors.BuyCommand;
 import com.gmail.justbru00.epic.smp.CommandExecutors.EpicSMP;
 import com.gmail.justbru00.epic.smp.Listeners.Listener;
@@ -38,12 +41,11 @@ public class Main extends JavaPlugin{
 	public final String PLUGIN_VERSION = this.getDescription().getVersion();
 	public final List<String> PLUGIN_AUTHORS = this.getDescription().getAuthors();
 	public final int CONFIG_VERSION = 1;
-		
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public static Economy econ = null;
+	public static RegisteredServiceProvider<Permission> permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+	public static Permission permission = permissionProvider.getProvider();
+	public static boolean debugMode = false;
 
-		return false;
-	}
 
 	@Override
 	public void onDisable() {
@@ -58,19 +60,25 @@ public class Main extends JavaPlugin{
 	/**
 	 * Enables Plugin
 	 */
-	public void enablePlugin(){
+	public void enablePlugin() {	 	
 		
 		this.saveDefaultConfig();
 		
 		getServer().getPluginManager().registerEvents(new Listener(), this);
 		
+        if (!setupEconomy() ) {
+            console.sendMessage(color(String.format("%s &cDisabled due to Vault NOT FOUND!", Prefix)));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 		
 		if (!checkConfigVersion()) {
 			msgConsole("&c**** WARNING ****");
 			msgConsole("&cConfig is OUTDATED or the config version was changed. Please delete it and restart your server.");
 			msgConsole("&cEPICSMP MAY NOT FUNCTION AS EXPECTED!!!");
-			msgConsole("&cI will not give any support if you don't fix the config.");
-			msgConsole("&c**** WARNING ****");			
+			msgConsole("&cPlugin will now disable.");
+			msgConsole("&c**** WARNING ****");	
+			Bukkit.getServer().getPluginManager().disablePlugin(this);
 		}
 		
 		
@@ -120,5 +128,18 @@ public class Main extends JavaPlugin{
 			return false;
 		}
 		return true;
-	}
+	}  
+
+	
+	private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
 }

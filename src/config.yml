@@ -27,4 +27,31 @@ commands:
     #Command /buycommand    
     buycommand:
         #Permission for the command.
-        permsission: ''
+        permission: 'epicsmp.buycommand' 
+        #If sender is not equal to player.
+        not correct sender: '&cOnly players can use this command.'
+        #Different Commands that can be bought.
+        commands:
+            one:
+                #Name of the item.
+                name: '&b/tpa'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ENDER_PEARL'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.tpa                
+            two:
+                #Name of the item.
+                name: '&b/tp'
+                #Price of command (One Time Purchase)
+                price: 600
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ENDER_PEARL'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.tp
+                 - essentials.tp.others
+                 - essentials.teleport.position
+                 - essentials.tppos
