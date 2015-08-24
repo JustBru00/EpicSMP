@@ -2,7 +2,7 @@
 #I will explain what the different options are below in comments.
 
 #DO NOT CHANGE THIS OPTION THE PLUGIN WILL BREAK.
-config version: 1
+config version: 2
 
 #Messages used throughout the plugin.
 plugin messages:
@@ -36,7 +36,7 @@ commands:
                 #Name of the item.
                 name: '&b/tpa'
                 #Price of command (One Time Purchase)
-                price: 500
+                price: 2000
                 #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
                 material: 'ENDER_PEARL'
                 # A List of permissions that will be added when the item is bought.
@@ -46,7 +46,7 @@ commands:
                 #Name of the item.
                 name: '&b/tp'
                 #Price of command (One Time Purchase)
-                price: 600
+                price: 3500
                 #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
                 material: 'ENDER_PEARL'
                 # A List of permissions that will be added when the item is bought.
@@ -55,3 +55,258 @@ commands:
                  - essentials.tp.others
                  - essentials.teleport.position
                  - essentials.tppos
+            three:
+                #Name of the item.
+                name: '&b/tpahere'
+                #Price of command (One Time Purchase)
+                price: 2100
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ENDER_PEARL'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.tpahere  
+            four:
+                #Name of the item.
+                name: '&b/tpall'
+                #Price of command (One Time Purchase)
+                price: 4500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ENDER_PEARL'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.tpall  
+            five:
+                #Name of the item.
+                name: '&b/msg'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'BOOK'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.msg 
+            six:
+                #Name of the item.
+                name: '&b/fix'
+                #Price of command (One Time Purchase)
+                price: 7500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ANVIL'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.repair
+                 - essentials.repair.all
+                 - essentials.repair.armor
+                 - essentials.repair.enchanted
+            seven:
+                #Name of the item.
+                name: '&b/back'
+                #Price of command (One Time Purchase)
+                price: 7000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'BARRIER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.back
+                 - essentials.back.ondeath
+            eight:
+                #Name of the item.
+                name: '&b/broadcast'
+                #Price of command (One Time Purchase)
+                price: 1500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'COMMAND_MINECART'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.broadcast     
+            nine:
+                #Name of the item.
+                name: '&b/clearinventory'
+                #Price of command (One Time Purchase)
+                price: 1500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'LAVA_BUCKET'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.clearinventory  
+            ten:
+                #Name of the item.
+                name: '&b/craft'
+                #Price of command (One Time Purchase)
+                price: 5000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'WORKBENCH'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.workbench     
+            eleven:
+                #Name of the item.
+                name: '&b/time'
+                #Price of command (One Time Purchase)
+                price: 6000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'WATCH'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.time
+                 - essentials.time.set
+            twelve:
+                #Name of the item.
+                name: '&b/feed'
+                #Price of command (One Time Purchase)
+                price: 7500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'COOKED_BEEF'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.feed     
+            thirteen:
+                #Name of the item.
+                name: '&b/enderchest'
+                #Price of command (One Time Purchase)
+                price: 2000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'ENDER_CHEST'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.enderchest
+            fourteen:
+                #Name of the item.
+                name: '&b/fly'
+                #Price of command (One Time Purchase)
+                price: 8000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'FEATHER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.fly     
+            fifteen:
+                #Name of the item.
+                name: '&b/hat'
+                #Price of command (One Time Purchase)
+                price: 2000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'GLASS'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.hat                     
+            sixteen:
+                #Name of the item.
+                name: '&b/invsee'
+                #Price of command (One Time Purchase)
+                price: 4000
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'CHEST'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.invsee  
+            seventeen:
+                #Name of the item.
+                name: '&b/heal'
+                #Price of command (One Time Purchase)
+                price: 6500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'GOLDEN_APPLE'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.heal                     
+            eighteen:
+                #Name of the item.
+                name: '&b/lightning'
+                #Price of command (One Time Purchase)
+                price: 4500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'TORCH'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - essentials.lightning
+            nineteen:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none
+            twenty:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none
+            twentyone:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none
+            twentytwo:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none    
+            twentythree:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none 
+            twentyfour:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none 
+            twentyfive:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none
+            twentysix:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none
+            twentyseven:
+                #Name of the item.
+                name: 'null'
+                #Price of command (One Time Purchase)
+                price: 500
+                #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
+                material: 'PAPER'
+                # A List of permissions that will be added when the item is bought.
+                permissions:
+                 - none                    

@@ -40,10 +40,10 @@ public class Main extends JavaPlugin{
 	public static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 	public final String PLUGIN_VERSION = this.getDescription().getVersion();
 	public final List<String> PLUGIN_AUTHORS = this.getDescription().getAuthors();
-	public final int CONFIG_VERSION = 1;
+	public final int CONFIG_VERSION = 2;
 	public static Economy econ = null;
-	public static RegisteredServiceProvider<Permission> permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-	public static Permission permission = permissionProvider.getProvider();
+	public static RegisteredServiceProvider<Permission> permissionProvider;
+	public static Permission permission;
 	public static boolean debugMode = false;
 
 
@@ -72,18 +72,19 @@ public class Main extends JavaPlugin{
             return;
         }
 		
-		if (!checkConfigVersion()) {
+		if (getConfig().getInt("config version") != CONFIG_VERSION) {
 			msgConsole("&c**** WARNING ****");
 			msgConsole("&cConfig is OUTDATED or the config version was changed. Please delete it and restart your server.");
-			msgConsole("&cEPICSMP MAY NOT FUNCTION AS EXPECTED!!!");
-			msgConsole("&cPlugin will now disable.");
-			msgConsole("&c**** WARNING ****");	
-			Bukkit.getServer().getPluginManager().disablePlugin(this);
+			msgConsole("&cEPICSMP MAY NOT FUNCTION AS EXPECTED!!!");			
+			msgConsole("&c**** WARNING ****");				
 		}
 		
 		
 		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2015 Justin Brubaker. For license info see /epicsmp license");
 		msgConsole("&aEnabling plugin.");
+		
+		permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		permission = permissionProvider.getProvider();
 	
 		Prefix = getConfigString("plugin messages.prefix");
 		msgConsole("&bPrefix has been set to the one in the config.");
