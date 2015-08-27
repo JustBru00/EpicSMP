@@ -45,7 +45,7 @@ public class Main extends JavaPlugin{
 	public static Economy econ = null;
 	public static RegisteredServiceProvider<Permission> permissionProvider;
 	public static Permission permission;
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 
 
 	@Override
@@ -71,14 +71,7 @@ public class Main extends JavaPlugin{
             console.sendMessage(color(String.format("%s &cDisabled due to Vault NOT FOUND!", Prefix)));
             getServer().getPluginManager().disablePlugin(this);
             return;
-        }
-		
-		if (getConfig().getInt("config version") != CONFIG_VERSION) {
-			msgConsole("&c**** WARNING ****");
-			msgConsole("&cConfig is OUTDATED or the config version was changed. Please delete it and restart your server.");
-			msgConsole("&cEPICSMP MAY NOT FUNCTION AS EXPECTED!!!");			
-			msgConsole("&c**** WARNING ****");				
-		}
+        }		
 		
 		
 		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2015 Justin Brubaker. For license info see /epicsmp license");
