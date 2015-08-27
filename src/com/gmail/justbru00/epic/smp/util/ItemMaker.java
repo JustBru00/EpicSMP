@@ -35,4 +35,25 @@ public class ItemMaker {
 		
 		return is;
 	}
+	
+	public static ItemStack createItemStack(String nocolordisplayname, String material) {
+		Material m;
+		
+	try {	
+		m = Material.getMaterial(material);
+	} catch (Exception e) {
+		Main.console.sendMessage(Main.Prefix + Main.color("&cAn error happened when getting the material: " + material + ". Changed it to paper instead."));
+		m = Material.PAPER;
+	}
+	
+		ItemStack is = new ItemStack(m);		
+		ItemMeta im = is.getItemMeta();
+		
+		im.setDisplayName(Main.color(nocolordisplayname));
+
+		
+		is.setItemMeta(im);
+		
+		return is;
+	}
 }

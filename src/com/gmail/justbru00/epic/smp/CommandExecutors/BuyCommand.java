@@ -266,7 +266,7 @@ public class BuyCommand implements CommandExecutor{
 	/**
 	 * @pram player	| Player to check.
 	 * @param path | path to config list
-	 * @return | returns true if found a permission the player doesn't have. returns false if player allready has all permissions.
+	 * @return | returns true if found a permission the player doesn't have. returns false if player already has all permissions.
 	 */
 	public boolean checkPermissions(Player player, String path) {
 		@SuppressWarnings("unchecked")

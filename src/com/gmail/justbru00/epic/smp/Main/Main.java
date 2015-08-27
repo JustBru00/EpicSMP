@@ -32,6 +32,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.justbru00.epic.smp.CommandExecutors.BuyCommand;
 import com.gmail.justbru00.epic.smp.CommandExecutors.EpicSMP;
+import com.gmail.justbru00.epic.smp.CommandExecutors.Withdraw;
 import com.gmail.justbru00.epic.smp.Listeners.Listener;
 
 public class Main extends JavaPlugin{
@@ -44,7 +45,7 @@ public class Main extends JavaPlugin{
 	public static Economy econ = null;
 	public static RegisteredServiceProvider<Permission> permissionProvider;
 	public static Permission permission;
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 
 
 	@Override
@@ -64,7 +65,7 @@ public class Main extends JavaPlugin{
 		
 		this.saveDefaultConfig();
 		
-		getServer().getPluginManager().registerEvents(new Listener(), this);
+		getServer().getPluginManager().registerEvents(new Listener(this), this);
 		
         if (!setupEconomy() ) {
             console.sendMessage(color(String.format("%s &cDisabled due to Vault NOT FOUND!", Prefix)));
@@ -91,6 +92,7 @@ public class Main extends JavaPlugin{
 		
         getCommand("epicsmp").setExecutor(new EpicSMP(this));
         getCommand("buycommand").setExecutor(new BuyCommand(this));
+        getCommand("withdraw").setExecutor(new Withdraw(this));
 		msgConsole("&bCommand Executors have been set.");		
 		
 		msgConsole("&bPlugin has been enabled.");

@@ -2,7 +2,7 @@
 #I will explain what the different options are below in comments.
 
 #DO NOT CHANGE THIS OPTION THE PLUGIN WILL BREAK.
-config version: 2
+config version: 1
 
 #Messages used throughout the plugin.
 plugin messages:
@@ -13,6 +13,17 @@ plugin messages:
 
 #Commands Section.   
 commands:
+    #Command /withdraw
+    withdraw:
+        #Permission for the command.
+        permission: 'epicsmp.withdraw'
+        #Use a number message.
+        use a number: '&cPlease put a number.'
+        #Too many or too little args message.
+        too many or too little args: '&cToo Many or Too Little Args. Please only type one number after /withdraw. Eg: /withdraw 50'
+        #Only players can use this command message.
+        sender not player: '&4Only players can use this command.'
+        
     #Command /epicsmp
     epicsmp:
         #Permission for the command.
