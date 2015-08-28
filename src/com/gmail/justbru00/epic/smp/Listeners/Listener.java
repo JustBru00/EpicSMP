@@ -60,6 +60,7 @@ public class Listener implements org.bukkit.event.Listener {
     	
     	if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
     	
+    	if (player.getItemInHand().getItemMeta().getLore() == null) return;
     	
         if (player.getItemInHand().getItemMeta().getLore().equals(testlore)) {
             if(e.getAction() == Action.RIGHT_CLICK_AIR){

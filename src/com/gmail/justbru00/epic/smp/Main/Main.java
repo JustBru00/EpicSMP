@@ -114,17 +114,7 @@ public class Main extends JavaPlugin{
 		return ChatColor.translateAlternateColorCodes('&', uncoloredtext);
 	}
 	
-	/**
-	 * 
-	 * @return | true if config version is ok
-	 * @return | false if config version is not ok
-	 */
-	public boolean checkConfigVersion() {
-		if(getConfig().getInt("config version") != CONFIG_VERSION) {
-			return false;
-		}
-		return true;
-	}  
+
 
 	
 	private boolean setupEconomy() {
