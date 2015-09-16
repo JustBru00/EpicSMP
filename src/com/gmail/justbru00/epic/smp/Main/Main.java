@@ -19,6 +19,10 @@
  */
 package com.gmail.justbru00.epic.smp.Main;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import net.milkbowl.vault.economy.Economy;
@@ -46,7 +50,7 @@ public class Main extends JavaPlugin{
 	public static RegisteredServiceProvider<Permission> permissionProvider;
 	public static Permission permission;
 	public static boolean debugMode = false;
-
+	public final int RESOURCE_NUMBER = 11503;
 
 	@Override
 	public void onDisable() {
@@ -60,6 +64,7 @@ public class Main extends JavaPlugin{
 
 	/**
 	 * Enables Plugin
+	 * 
 	 */
 	public void enablePlugin() {	 	
 		
@@ -71,7 +76,28 @@ public class Main extends JavaPlugin{
             console.sendMessage(color(String.format("%s &cDisabled due to Vault NOT FOUND!", Prefix)));
             getServer().getPluginManager().disablePlugin(this);
             return;
-        }		
+        }	
+        
+        // Check for updates on spigot.
+        try {
+            HttpURLConnection con = (HttpURLConnection) new URL(
+                    "http://www.spigotmc.org/api/general.php").openConnection();
+            con.setDoOutput(true);
+            con.setRequestMethod("POST");
+            con.getOutputStream()
+                    .write(("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=" + RESOURCE_NUMBER)
+                            .getBytes("UTF-8"));
+            String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
+            if (version != null) {            	
+            	if (version.equalsIgnoreCase(PLUGIN_VERSION)) {
+            		msgConsole("No Update Found.");
+            	} else {
+            		msgConsole("Found a update please download it at: https://www.spigotmc.org/resources/epicsmp.11503/");
+            	}
+            }
+        } catch (Exception ex) {
+           msgConsole("Failed to check for a update on spigot.");
+        }
 		
 		
 		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2015 Justin Brubaker. For license info see /epicsmp license");
@@ -86,8 +112,7 @@ public class Main extends JavaPlugin{
         getCommand("epicsmp").setExecutor(new EpicSMP(this));
         getCommand("buycommand").setExecutor(new BuyCommand(this));
         getCommand("withdraw").setExecutor(new Withdraw(this));
-		msgConsole("&bCommand Executors have been set.");		
-		
+		msgConsole("&bCommand Executors have been set.");			
 		msgConsole("&bPlugin has been enabled.");
 	}
 	
