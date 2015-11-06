@@ -49,6 +49,7 @@ public class BuyCommand implements CommandExecutor{
 				Player player = (Player) sender; 
 				if (!player.hasPermission(main.getConfigString("commands.buycommand.permission"))) {
 					player.sendMessage(Main.Prefix + main.getConfigString("plugin messages.no permission"));
+					return true;
 				}
 				double money = 100;
 				money = Main.econ.getBalance(player);
@@ -71,6 +72,12 @@ public class BuyCommand implements CommandExecutor{
 	public Inventory GUI(Player player, double money) {
 		Inventory inv = Bukkit.createInventory(null, 27, Main.color("&cBalance: $" + money));
 		
+		if (player.isOp()) {
+			player.sendMessage(Main.Prefix + Main.color("&cYou are OP. GUI MAY NOT WORK AS EXPECTED. TO TEST DEOP YOURSELF."));
+			Inventory opinv = Bukkit.createInventory(null, 9, Main.color("&4YOU ARE OP."));			
+			opinv.setItem(4, ItemMaker.createItemStack("&4You are OP", "BARRIER", "&bThe GUI WILL NOT WORK RIGHT", "&bWHEN YOU ARE OP."));
+			return opinv;
+		}
 		// One
 		if (checkPermissions(player, "commands.buycommand.commands.one.permissions")) {
 			if (!main.getConfigString("commands.buycommand.commands.one.name").equalsIgnoreCase("null")) {
