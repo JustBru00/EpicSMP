@@ -40,6 +40,7 @@ public class Withdraw implements CommandExecutor{
 		this.main = main;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command command,	String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("withdraw")) {			

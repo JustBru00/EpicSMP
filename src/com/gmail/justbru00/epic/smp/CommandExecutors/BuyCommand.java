@@ -69,6 +69,7 @@ public class BuyCommand implements CommandExecutor{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Inventory GUI(Player player, double money) {
 		Inventory inv = Bukkit.createInventory(null, 27, Main.color("&cBalance: $" + money));
 		

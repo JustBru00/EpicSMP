@@ -23,14 +23,21 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,10 +45,13 @@ import com.gmail.justbru00.epic.smp.CommandExecutors.BuyCommand;
 import com.gmail.justbru00.epic.smp.CommandExecutors.EpicSMP;
 import com.gmail.justbru00.epic.smp.CommandExecutors.Withdraw;
 import com.gmail.justbru00.epic.smp.Listeners.Listener;
+import com.gmail.justbru00.epic.smp.util.Messager;
 
+@SuppressWarnings("unused")
 public class Main extends JavaPlugin{
 	
 	public static String Prefix = color("&8[&bEpic&fSMP&8] &f");	
+	public static Logger log = Bukkit.getLogger();
 	public static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 	public final String PLUGIN_VERSION = this.getDescription().getVersion();
 	public final List<String> PLUGIN_AUTHORS = this.getDescription().getAuthors();
@@ -51,6 +61,9 @@ public class Main extends JavaPlugin{
 	public static Permission permission;
 	public static boolean debugMode = false;
 	public final int RESOURCE_NUMBER = 11503;
+	public boolean useFlyCost = true;
+	public List<Player> kickFromFlying = new ArrayList<Player>();
+	
 
 	@Override
 	public void onDisable() {
@@ -61,6 +74,64 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		enablePlugin();
 	}
+	
+	///**
+	// * Runs every 20 seconds.
+	 //*/
+	//public void tick() {
+	//	Bukkit.getServer().getScheduler().runTaskTimer(this, new Runnable() {
+//
+	//		@Override
+	//		public void run() {
+	//			// If commands.flycost.use = false; return;
+	//			if (!useFlyCost) return;			
+	//			
+	//			// Generate
+	//			List<Player> list = new ArrayList<Player>();
+	//			 
+	//	        for (Player p2 : Bukkit.getOnlinePlayers()) {
+	//	                list.add(p2);
+	//	        }
+	//	        
+	//	        int j = 0;
+	//			while (j<list.size()) {
+	//				Player player = list.get(j);
+	//				if (player == null) Bukkit.broadcastMessage("PLAYER IS NULL IN KICKLIST");
+		//		
+			//		if (kickFromFlying.contains(player)) {
+				//		kickFromFlying.remove(player);
+					//	player.sendMessage(Prefix + color("&4KICKED FROM FLYING!!!!"));
+	//					//player.setFlying(false);	
+	//					Bukkit.getServer().dispatchCommand(console, "fly "+ player.getName() + " off");
+		//			}
+			//		j++;
+				//}
+				
+		//        int i = 0;
+			//	while(i<list.size()) {					
+					
+	//				
+		//			Player player = list.get(i);					
+			//		
+				//	if (player.isFlying()) {	
+	//					if ((player.getGameMode() == GameMode.SURVIVAL)) {						
+		///				PlayerInventory pi = player.getInventory();
+			//			if (pi.contains(Material.getMaterial("COAL"))) {
+				//			pi.removeItem(new ItemStack(Material.COAL, 1));
+					//		player.sendMessage(Prefix + color("&cTook one coal from you inventory."));
+						//} else {
+//							player.sendMessage(Prefix + color("&cYou will be kicked out of fly mode in 20 seconds."));
+	//						kickFromFlying.add(player);
+		//				}
+			//		  }	
+				//	}
+//					i++;
+	//			}
+		//		
+			//}			
+//			
+	//	}, 400L, 400L);
+//	}
 
 	/**
 	 * Enables Plugin
@@ -97,7 +168,7 @@ public class Main extends JavaPlugin{
         }
 		
 		
-		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2015 Justin Brubaker. For license info see /epicsmp license");
+		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2016 Justin Brubaker. For license info see /epicsmp license");
 		msgConsole("&aEnabling plugin.");
 		
 		permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
@@ -109,7 +180,8 @@ public class Main extends JavaPlugin{
         getCommand("epicsmp").setExecutor(new EpicSMP(this));
         getCommand("buycommand").setExecutor(new BuyCommand(this));
         getCommand("withdraw").setExecutor(new Withdraw(this));
-		msgConsole("&bCommand Executors have been set.");			
+		msgConsole("&bCommand Executors have been set.");	
+		//tick();
 		msgConsole("&bPlugin has been enabled.");
 	}
 	
@@ -124,16 +196,21 @@ public class Main extends JavaPlugin{
 		return color(getConfig().getString(path));
 	}
 	
+	/**
+	 * @deprecated
+	 * @param msg
+	 */
 	public static void msgConsole(String msg) {
-		console.sendMessage(Prefix + color(msg));
+		Messager.msgConsole(msg);
 	}
 	
 	/** 
+	 * @deprecated
 	 * @param uncoloredtext | Text to Color
 	 * @return | Returns Text Colored
 	 */
 	public static String color(String uncoloredtext) {
-		return ChatColor.translateAlternateColorCodes('&', uncoloredtext);
+		return Messager.color(uncoloredtext);
 	}
 	
 

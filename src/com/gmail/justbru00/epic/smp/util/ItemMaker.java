@@ -10,6 +10,7 @@ import com.gmail.justbru00.epic.smp.Main.Main;
 
 public class ItemMaker {
 
+	@SuppressWarnings("deprecation")
 	public static ItemStack createItemStack(String nocolordisplayname, String material, String lore, String lore2) {
 		Material m;
 		
@@ -36,6 +37,7 @@ public class ItemMaker {
 		return is;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static ItemStack createItemStack(String nocolordisplayname, String material) {
 		Material m;
 		

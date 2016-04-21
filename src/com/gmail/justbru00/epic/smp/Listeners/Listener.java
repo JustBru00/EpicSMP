@@ -49,6 +49,7 @@ public class Listener implements org.bukkit.event.Listener {
 			"seventeen", "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour",
 			"twentyfive", "twentysix", "twentyseven"};
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
     public void onPlayerInteract(PlayerInteractEvent e){
         final Player player = e.getPlayer();
@@ -93,6 +94,7 @@ public class Listener implements org.bukkit.event.Listener {
 
 
 	// Sends plugin developer (Justin Brubaker) a msg when he joins the server.
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 	 if (e.getPlayer().getName().equalsIgnoreCase("JustBru00")) {
@@ -101,7 +103,7 @@ public class Listener implements org.bukkit.event.Listener {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();		
@@ -150,8 +152,9 @@ public class Listener implements org.bukkit.event.Listener {
 		if (e.getInventory().getName().contains(Main.color("&cBalance: $"))) {			
 			// If item they clicked on is a empty space or Air do nothing.
 			if (e.getCurrentItem() == null || e.getCurrentItem() == new ItemStack(Material.AIR)) {
-				return;
-			}					
+				return;		
+				}				
+			
 			
 			// Cancel the action
 			e.setCancelled(true);
@@ -163,7 +166,7 @@ public class Listener implements org.bukkit.event.Listener {
 			while (i < itemnumberlist.length) {
 				if (Main.debugMode) {
 					Bukkit.broadcastMessage("Checking ArrayList #" + i);
-				}
+				}				
 				if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Main.color(main.getConfigString("commands.buycommand.commands." + itemnumberlist[i] + ".name")))) {	
 							                        
 		           	int itemcost =  main.getConfig().getInt("commands.buycommand.commands." + itemnumberlist[i] + ".price");	
