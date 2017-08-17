@@ -74,64 +74,6 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		enablePlugin();
 	}
-	
-	///**
-	// * Runs every 20 seconds.
-	 //*/
-	//public void tick() {
-	//	Bukkit.getServer().getScheduler().runTaskTimer(this, new Runnable() {
-//
-	//		@Override
-	//		public void run() {
-	//			// If commands.flycost.use = false; return;
-	//			if (!useFlyCost) return;			
-	//			
-	//			// Generate
-	//			List<Player> list = new ArrayList<Player>();
-	//			 
-	//	        for (Player p2 : Bukkit.getOnlinePlayers()) {
-	//	                list.add(p2);
-	//	        }
-	//	        
-	//	        int j = 0;
-	//			while (j<list.size()) {
-	//				Player player = list.get(j);
-	//				if (player == null) Bukkit.broadcastMessage("PLAYER IS NULL IN KICKLIST");
-		//		
-			//		if (kickFromFlying.contains(player)) {
-				//		kickFromFlying.remove(player);
-					//	player.sendMessage(Prefix + color("&4KICKED FROM FLYING!!!!"));
-	//					//player.setFlying(false);	
-	//					Bukkit.getServer().dispatchCommand(console, "fly "+ player.getName() + " off");
-		//			}
-			//		j++;
-				//}
-				
-		//        int i = 0;
-			//	while(i<list.size()) {					
-					
-	//				
-		//			Player player = list.get(i);					
-			//		
-				//	if (player.isFlying()) {	
-	//					if ((player.getGameMode() == GameMode.SURVIVAL)) {						
-		///				PlayerInventory pi = player.getInventory();
-			//			if (pi.contains(Material.getMaterial("COAL"))) {
-				//			pi.removeItem(new ItemStack(Material.COAL, 1));
-					//		player.sendMessage(Prefix + color("&cTook one coal from you inventory."));
-						//} else {
-//							player.sendMessage(Prefix + color("&cYou will be kicked out of fly mode in 20 seconds."));
-	//						kickFromFlying.add(player);
-		//				}
-			//		  }	
-				//	}
-//					i++;
-	//			}
-		//		
-			//}			
-//			
-	//	}, 400L, 400L);
-//	}
 
 	/**
 	 * Enables Plugin
@@ -147,28 +89,9 @@ public class Main extends JavaPlugin{
             console.sendMessage(color(String.format("%s &cDisabled due to Vault NOT FOUND!", Prefix)));
             getServer().getPluginManager().disablePlugin(this);
             return;
-        }	
-        
-        // Check for updates on spigot.
-        try {
-            HttpURLConnection con = (HttpURLConnection) new URL("http://www.spigotmc.org/api/general.php").openConnection();
-            con.setDoOutput(true);
-            con.setRequestMethod("POST");
-            con.getOutputStream().write(("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=" + RESOURCE_NUMBER).getBytes("UTF-8"));
-            String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
-            if (version != null) {            	
-            	if (version.equalsIgnoreCase(PLUGIN_VERSION)) {
-            		msgConsole("No Update Found.");
-            	} else {
-            		msgConsole("Found a update please download it at: https://www.spigotmc.org/resources/epicsmp.11503/");
-            	}
-            }
-        } catch (Exception ex) {
-           msgConsole("Failed to check for a update on spigot.");
-        }
+        }			
 		
-		
-		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2016 Justin Brubaker. For license info see /epicsmp license");
+		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2017 Justin Brubaker. For license info see /epicsmp license");
 		msgConsole("&aEnabling plugin.");
 		
 		permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
