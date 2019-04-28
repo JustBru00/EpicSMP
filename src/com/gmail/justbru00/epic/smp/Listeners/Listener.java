@@ -36,6 +36,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.gmail.justbru00.epic.smp.Main.Main;
 import com.gmail.justbru00.epic.smp.util.ItemMaker;
+import com.gmail.justbru00.epic.smp.util.Messager;
 
 import net.milkbowl.vault.economy.EconomyResponse;
 
@@ -55,8 +56,8 @@ public class Listener implements org.bukkit.event.Listener {
         final Player player = e.getPlayer();
         
         ArrayList<String> testlore = new ArrayList<String>();
-    	testlore.add(Main.color("&7Right Click in the air to deposit this."));
-    	testlore.add(Main.color(Main.Prefix));
+    	testlore.add(Messager.color("&7Right Click in the air to deposit this."));
+    	testlore.add(Messager.color(Main.Prefix));
     	
     	
     	if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
@@ -67,7 +68,7 @@ public class Listener implements org.bukkit.event.Listener {
             if(e.getAction() == Action.RIGHT_CLICK_AIR){
                 if(player.getItemInHand().getType() == Material.PAPER){       	
                 		double depositamount = 0.0;
-                		String plainMoney = player.getItemInHand().getItemMeta().getDisplayName().replace(Main.color("&4&l$"), " ");
+                		String plainMoney = player.getItemInHand().getItemMeta().getDisplayName().replace(Messager.color("&4&l$"), " ");
                 		ChatColor.stripColor(plainMoney);
                 		depositamount = Double.parseDouble(plainMoney);
                 		EconomyResponse r = Main.econ.depositPlayer(player, depositamount);
@@ -81,7 +82,7 @@ public class Listener implements org.bukkit.event.Listener {
     		              inHand.setAmount(--amountInHand);
     		              }
     		            } else {
-    		            	player.sendMessage(String.format(Main.Prefix + Main.color("&4An error occured: %s"), r.errorMessage));    		             
+    		            	player.sendMessage(String.format(Main.Prefix + Messager.color("&4An error occured: %s"), r.errorMessage));    		             
     		            }			
                 	}
                 }  
@@ -94,22 +95,27 @@ public class Listener implements org.bukkit.event.Listener {
 
 
 	// Sends plugin developer (Justin Brubaker) a msg when he joins the server.
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 	 if (e.getPlayer().getName().equalsIgnoreCase("JustBru00")) {
-		 e.getPlayer().sendMessage(Main.color(Main.Prefix + "&bThis Server Uses EpicSMP."));		 
+		 e.getPlayer().sendMessage(Messager.color(Main.Prefix + "&bThis Server Uses EpicSMP."));		 
 	 }
 	}
 	
 	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked" })
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();		
 		
+		if (e.getInventory() == null) {
+			return;
+		} else if (e.getCurrentItem() == null) {
+			return;
+		}
+		
 		// Confirm GUI checks :D
-		if (e.getInventory().getName().contains(Main.color("&bConfirm Purchase"))) {	
+		if (e.getView().getTitle().contains(Messager.color("&bConfirm Purchase"))) {	
 		
 			if (e.getCurrentItem() == null || e.getCurrentItem() == new ItemStack(Material.AIR)) {
 				return;
@@ -118,11 +124,11 @@ public class Listener implements org.bukkit.event.Listener {
 			// Cancel the action
 			e.setCancelled(true);
 			
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Main.color("&cCANCEL"))) {
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Messager.color("&cCANCEL"))) {
 				p.closeInventory();
 			}
 			
-			if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Main.color("&aOK"))) {
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Messager.color("&aOK"))) {
 				
 				int number = Integer.parseInt(e.getInventory().getItem(22).getItemMeta().getDisplayName());
 				EconomyResponse r = Main.econ.withdrawPlayer(p, main.getConfig().getInt("commands.buycommand.commands." + itemnumberlist[number] + ".price"));
@@ -143,13 +149,13 @@ public class Listener implements org.bukkit.event.Listener {
 	                
 	                p.closeInventory();
 	            } else {
-	                p.sendMessage(String.format(Main.Prefix + Main.color("&4An error occured: %s"), r.errorMessage));
+	                p.sendMessage(String.format(Main.Prefix + Messager.color("&4An error occured: %s"), r.errorMessage));
 	                p.closeInventory();
 	            }     			
 			}
 		}
 		
-		if (e.getInventory().getName().contains(Main.color("&cBalance: $"))) {			
+		if (e.getView().getTitle().contains(Messager.color("&cBalance: $"))) {			
 			// If item they clicked on is a empty space or Air do nothing.
 			if (e.getCurrentItem() == null || e.getCurrentItem() == new ItemStack(Material.AIR)) {
 				return;		
@@ -167,12 +173,12 @@ public class Listener implements org.bukkit.event.Listener {
 				if (Main.debugMode) {
 					Bukkit.broadcastMessage("Checking ArrayList #" + i);
 				}				
-				if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Main.color(main.getConfigString("commands.buycommand.commands." + itemnumberlist[i] + ".name")))) {	
+				if (e.getCurrentItem().getItemMeta().getDisplayName().equals(Messager.color(main.getConfigString("commands.buycommand.commands." + itemnumberlist[i] + ".name")))) {	
 							                        
 		           	int itemcost =  main.getConfig().getInt("commands.buycommand.commands." + itemnumberlist[i] + ".price");	
 		           	String loc = String.valueOf(i);
 					
-		            Inventory inv = Bukkit.createInventory(null, 27, Main.color("&bConfirm Purchase"));
+		            Inventory inv = Bukkit.createInventory(null, 27, Messager.color("&bConfirm Purchase"));
 		            
 		            ItemStack ok = ItemMaker.createItemStack("&aOK", "EMERALD_BLOCK");		            
 		            ItemStack cancel = ItemMaker.createItemStack("&cCANCEL", "REDSTONE_BLOCK");
