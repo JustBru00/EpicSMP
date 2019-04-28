@@ -143,7 +143,7 @@ commands:
                 #Price of command (One Time Purchase)
                 price: 1500
                 #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
-                material: 'COMMAND_MINECART'
+                material: 'COMMAND_BLOCK_MINECART'
                 # A List of permissions that will be added when the item is bought.
                 permissions:
                  - essentials.broadcast     
@@ -163,7 +163,7 @@ commands:
                 #Price of command (One Time Purchase)
                 price: 5000
                 #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
-                material: 'WORKBENCH'
+                material: 'CRAFTING_TABLE'
                 # A List of permissions that will be added when the item is bought.
                 permissions:
                  - essentials.workbench     
@@ -173,7 +173,7 @@ commands:
                 #Price of command (One Time Purchase)
                 price: 6000
                 #Material of item. (MUST be a valid Bukkit Material. If it it not a valid Material it will default to PAPER)
-                material: 'WATCH'
+                material: 'CLOCK'
                 # A List of permissions that will be added when the item is bought.
                 permissions:
                  - essentials.time

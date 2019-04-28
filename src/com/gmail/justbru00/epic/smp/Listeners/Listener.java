@@ -50,36 +50,36 @@ public class Listener implements org.bukkit.event.Listener {
 			"seventeen", "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour",
 			"twentyfive", "twentysix", "twentyseven"};
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
     public void onPlayerInteract(PlayerInteractEvent e){
         final Player player = e.getPlayer();
         
         ArrayList<String> testlore = new ArrayList<String>();
-    	testlore.add(Messager.color("&7Right Click in the air to deposit this."));
+    	testlore.add(Messager.color("&7Right click in the air to deposit this."));
     	testlore.add(Messager.color(Main.Prefix));
     	
     	
     	if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
     	
-    	if (player.getItemInHand().getItemMeta().getLore() == null) return;
+    	if (player.getInventory().getItemInMainHand().getItemMeta().getLore() == null) return;
     	
-        if (player.getItemInHand().getItemMeta().getLore().equals(testlore)) {
+        if (player.getInventory().getItemInMainHand().getItemMeta().getLore().equals(testlore)) {
             if(e.getAction() == Action.RIGHT_CLICK_AIR){
-                if(player.getItemInHand().getType() == Material.PAPER){       	
+                if(player.getInventory().getItemInMainHand().getType() == Material.PAPER){       	
                 		double depositamount = 0.0;
-                		String plainMoney = player.getItemInHand().getItemMeta().getDisplayName().replace(Messager.color("&4&l$"), " ");
+                		String plainMoney = player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().replace(Messager.color("&4&l$"), " ");
                 		ChatColor.stripColor(plainMoney);
                 		depositamount = Double.parseDouble(plainMoney);
                 		EconomyResponse r = Main.econ.depositPlayer(player, depositamount);
     		            if(r.transactionSuccess()) {
     		                player.sendMessage(String.format(Main.Prefix + "Deposited %s and now you have %s", Main.econ.format(r.amount), Main.econ.format(r.balance))); 
-    		                ItemStack inHand = player.getItemInHand();
+    		                ItemStack inHand = player.getInventory().getItemInMainHand();
     		              int amountInHand = inHand.getAmount();
     		              if (amountInHand == 1) {
-    		            	  player.setItemInHand(new ItemStack(Material.AIR));
+    		            	 e.setCancelled(true);
+    		            	 player.getInventory().remove(inHand);
     		              } else {
-    		              inHand.setAmount(--amountInHand);
+    		            	  inHand.setAmount(--amountInHand);
     		              }
     		            } else {
     		            	player.sendMessage(String.format(Main.Prefix + Messager.color("&4An error occured: %s"), r.errorMessage));    		             
@@ -114,6 +114,11 @@ public class Listener implements org.bukkit.event.Listener {
 			return;
 		}
 		
+		if (e.getView().getTitle().contains(Messager.color("&4YOU ARE OP."))) {
+			e.setCancelled(true);
+			return;
+		}
+		
 		// Confirm GUI checks :D
 		if (e.getView().getTitle().contains(Messager.color("&bConfirm Purchase"))) {	
 		
@@ -134,7 +139,7 @@ public class Listener implements org.bukkit.event.Listener {
 				EconomyResponse r = Main.econ.withdrawPlayer(p, main.getConfig().getInt("commands.buycommand.commands." + itemnumberlist[number] + ".price"));
 				
 	            if(r.transactionSuccess()) {
-	                p.sendMessage(String.format(Main.Prefix + "Withdrew %s. Now you have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
+	                p.sendMessage(String.format(Main.Prefix + "Withdrew %s. Your balance is now %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 	                
 	        		List<String> permissionsList = (List<String>) main.getConfig().getList("commands.buycommand.commands." + itemnumberlist[number] + ".permissions");
 	        		
@@ -183,7 +188,7 @@ public class Listener implements org.bukkit.event.Listener {
 		            ItemStack ok = ItemMaker.createItemStack("&aOK", "EMERALD_BLOCK");		            
 		            ItemStack cancel = ItemMaker.createItemStack("&cCANCEL", "REDSTONE_BLOCK");
 		            ItemStack cost = ItemMaker.createItemStack("&7Cost: &c" + itemcost, "GOLD_INGOT");
-		            ItemStack indexnumber = ItemMaker.createItemStack(loc, "COMMAND_MINECART", "&cFor plugin usage.", "&cPlease ignore.");
+		            ItemStack indexnumber = ItemMaker.createItemStack(loc, "COMMAND_BLOCK_MINECART", "&cFor plugin usage.", "&cPlease ignore.");
 		            
 		            inv.setItem(0, ok);
 		            inv.setItem(1, ok);

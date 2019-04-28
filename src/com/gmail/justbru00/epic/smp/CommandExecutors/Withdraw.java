@@ -62,7 +62,7 @@ public class Withdraw implements CommandExecutor{
 		            if(r.transactionSuccess()) {
 		                player.sendMessage(String.format(Main.Prefix + "Withdrew %s and now you have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                PlayerInventory pi = player.getInventory();
-		                pi.addItem(ItemMaker.createItemStack(Main.color("&4&l$" + args[0]), "PAPER", Main.color("&7Right Click in the air to deposit this."), Main.Prefix));
+		                pi.addItem(ItemMaker.createItemStack(Main.color("&4&l$" + args[0]), "PAPER", Main.color("&7Right click in the air to deposit this."), Main.Prefix));
 		                
 		                return true;		                
 		            } else {

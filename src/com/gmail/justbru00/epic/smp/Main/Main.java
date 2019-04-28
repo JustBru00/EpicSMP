@@ -103,8 +103,7 @@ public class Main extends JavaPlugin{
         getCommand("epicsmp").setExecutor(new EpicSMP(this));
         getCommand("buycommand").setExecutor(new BuyCommand(this));
         getCommand("withdraw").setExecutor(new Withdraw(this));
-		msgConsole("&bCommand Executors have been set.");	
-		//tick();
+
 		msgConsole("&bPlugin has been enabled.");
 	}
 	
@@ -120,7 +119,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	/**
-	 * @deprecated
+	 * @deprecated Use Messager
 	 * @param msg
 	 */
 	public static void msgConsole(String msg) {
@@ -128,7 +127,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	/** 
-	 * @deprecated
+	 * @deprecated Use Messager
 	 * @param uncoloredtext | Text to Color
 	 * @return | Returns Text Colored
 	 */
