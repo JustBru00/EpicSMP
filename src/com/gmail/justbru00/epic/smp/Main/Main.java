@@ -104,6 +104,8 @@ public class Main extends JavaPlugin{
         getCommand("buycommand").setExecutor(new BuyCommand(this));
         getCommand("withdraw").setExecutor(new Withdraw(this));
 
+        BStats metrics = new BStats(this);
+        
 		msgConsole("&bPlugin has been enabled.");
 	}
 	
