@@ -39,8 +39,6 @@ public class BuyCommand implements CommandExecutor{
 		this.main = main; 
 	}
 	
-	// EG. Main.permission.playerAdd(player, permission);
-	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
