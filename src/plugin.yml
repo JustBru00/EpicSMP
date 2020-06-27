@@ -1,8 +1,8 @@
 name: EpicSMP
 main: com.gmail.justbru00.epic.smp.Main.Main
-version: 1.3.3
+version: 1.4
 description: A SMP server plugin
-author: [Justin Brubaker]
+authors: [Justin Brubaker, JustBru00]
 depend: [Vault]
 api-version: 1.13
 

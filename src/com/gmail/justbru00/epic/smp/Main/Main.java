@@ -63,6 +63,7 @@ public class Main extends JavaPlugin{
 	public final int RESOURCE_NUMBER = 11503;
 	public boolean useFlyCost = true;
 	public List<Player> kickFromFlying = new ArrayList<Player>();
+	private static final int BSTATS_METRICS_ID = 4566;
 	
 
 	@Override
@@ -91,7 +92,7 @@ public class Main extends JavaPlugin{
             return;
         }			
 		
-		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2017 Justin Brubaker. For license info see /epicsmp license");
+		msgConsole("EpicSMP Version " + PLUGIN_VERSION + " is copyright 2020 Justin Brubaker. For license info see /epicsmp license");
 		msgConsole("&aEnabling plugin.");
 		
 		permissionProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
@@ -104,7 +105,7 @@ public class Main extends JavaPlugin{
         getCommand("buycommand").setExecutor(new BuyCommand(this));
         getCommand("withdraw").setExecutor(new Withdraw(this));
 
-        BStats metrics = new BStats(this);
+        BStats metrics = new BStats(this, BSTATS_METRICS_ID);
         
 		msgConsole("&bPlugin has been enabled.");
 	}
