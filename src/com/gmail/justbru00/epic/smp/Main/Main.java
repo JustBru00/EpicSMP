@@ -55,7 +55,7 @@ public class Main extends JavaPlugin{
 	public static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 	public final String PLUGIN_VERSION = this.getDescription().getVersion();
 	public final List<String> PLUGIN_AUTHORS = this.getDescription().getAuthors();
-	public final int CONFIG_VERSION = 2;
+	public final int CONFIG_VERSION = 3;
 	public static Economy econ = null;
 	public static RegisteredServiceProvider<Permission> permissionProvider;
 	public static Permission permission;

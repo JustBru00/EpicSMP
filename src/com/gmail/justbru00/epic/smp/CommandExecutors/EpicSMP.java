@@ -56,6 +56,13 @@ public class EpicSMP implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("license")) {
 					sender.sendMessage(Main.Prefix + Main.color(main.getConfigString("commands.epicsmp.license")));
 					return true;
+				} else if (args[0].equalsIgnoreCase("reload")) {
+					// ISSUE #14
+					main.reloadConfig();
+					Main.Prefix = main.getConfigString("plugin messages.prefix");
+					sender.sendMessage(Main.Prefix + Main.color(main.getConfigString("commands.epicsmp.reload")));
+					return true;
+					// END ISSUE #14
 				} else {
 					sender.sendMessage(Main.Prefix + Main.color(main.getConfigString("commands.epicsmp.not enough args")));
 					return true;
