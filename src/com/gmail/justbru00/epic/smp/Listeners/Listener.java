@@ -54,6 +54,10 @@ public class Listener implements org.bukkit.event.Listener {
     public void onPlayerInteract(PlayerInteractEvent e){
         final Player player = e.getPlayer();
         
+        if (player == null) {
+        	return;
+        }
+        
         ArrayList<String> testlore = new ArrayList<String>();
     	testlore.add(Messager.color("&7Right click in the air to deposit this."));
     	testlore.add(Messager.color(Main.Prefix));
