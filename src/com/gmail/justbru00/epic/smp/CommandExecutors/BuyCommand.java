@@ -19,6 +19,7 @@
  */
 package com.gmail.justbru00.epic.smp.CommandExecutors;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -32,6 +33,8 @@ import com.gmail.justbru00.epic.smp.Main.Main;
 import com.gmail.justbru00.epic.smp.util.ItemMaker;
 
 public class BuyCommand implements CommandExecutor{
+	
+	private static DecimalFormat moneyFormat = new DecimalFormat("###,###,###.00");
 
 	Main main;
 	
@@ -69,7 +72,8 @@ public class BuyCommand implements CommandExecutor{
 	
 	@SuppressWarnings("deprecation")
 	public Inventory GUI(Player player, double money) {
-		Inventory inv = Bukkit.createInventory(null, 27, Main.color("&cBalance: $" + money));
+		String moneyFormatted = moneyFormat.format(money);
+		Inventory inv = Bukkit.createInventory(null, 27, Main.color("&cBalance: $" + moneyFormatted));
 		
 		if (player.isOp()) {
 			player.sendMessage(Main.Prefix + Main.color("&cYou are OP. GUI MAY NOT WORK AS EXPECTED. TO TEST DEOP YOURSELF."));
